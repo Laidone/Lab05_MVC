@@ -172,14 +172,15 @@
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\GenreController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LogsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MovieController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\MovieDBContext\202112031409242_Logging2.cs" />
-    <Compile Include="Migrations\MovieDBContext\202112031409242_Logging2.designer.cs">
-      <DependentUpon>202112031409242_Logging2.cs</DependentUpon>
+    <Compile Include="Migrations\MovieDBContext\202112031558078_Logging.cs" />
+    <Compile Include="Migrations\MovieDBContext\202112031558078_Logging.designer.cs">
+      <DependentUpon>202112031558078_Logging.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\MovieDBContext\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -314,7 +315,11 @@
     <Content Include="Views\Movie\GenreMenu.cshtml" />
     <Content Include="Views\Error\NotFound.cshtml" />
     <Content Include="Views\Error\ServerError.cshtml" />
-    <Content Include="Views\Movie\printlog.cshtml" />
+    <Content Include="Views\Logs\Create.cshtml" />
+    <Content Include="Views\Logs\Delete.cshtml" />
+    <Content Include="Views\Logs\Details.cshtml" />
+    <Content Include="Views\Logs\Edit.cshtml" />
+    <Content Include="Views\Logs\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -333,8 +338,8 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\MovieDBContext\202112031409242_Logging2.resx">
-      <DependentUpon>202112031409242_Logging2.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\MovieDBContext\202112031558078_Logging.resx">
+      <DependentUpon>202112031558078_Logging.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

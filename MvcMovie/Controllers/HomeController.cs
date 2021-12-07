@@ -48,7 +48,7 @@ namespace MvcMovie.Controllers
          string value = HttpUtility.HtmlEncode(name);
 
          Response.Write("<H1>Hello ");
-         Response.Write(value);
+         Response.Write(name);
          Response.Write("!</H1>");
       }
 

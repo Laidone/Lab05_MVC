@@ -10,6 +10,7 @@ namespace MvcMovie.Models
     {   [Key]
         public int Id { get; set; }
         [StringLength(60, MinimumLength = 3)]
+        [RegularExpression(@"^[a-zA-Z' ']+$", ErrorMessage = "Special character should not be entered")]
         public string Name { get; set; }
         [Display(Name = "Release Date")]
         [DataType(DataType.Date)]

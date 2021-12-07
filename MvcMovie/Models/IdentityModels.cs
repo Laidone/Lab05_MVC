@@ -32,5 +32,7 @@ namespace MvcMovie.Models
         {
             return new ApplicationDbContext();
         }
+
+        object placeHolderVariable;
     }
 }

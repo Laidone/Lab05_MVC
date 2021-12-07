@@ -11,50 +11,18 @@ namespace MvcMovie.Models
 {
     public class DateActionFilter : ActionFilterAttribute, IActionFilter
     {
-        public string _name { get; set; }
-        public DateTime _date { get; set; }
-        public string _operacao { get; set; }
-        /*private void Log(RouteData routedata)
-        {
-            var nome = routedata.Values["controller"];
-            var actioname = routedata.Values["action"];
-
-            Debug.WriteLine("Data e hora: {0}\nUsuário: {1}\nOperação realizada: {2}", _date, _name, _operacao);
-        }*/
-        /*public DateActionFilter()
-        {
-           _name = _dbContext.Name;
-            _operacao = _dbContext.Operacao;
-            _id = _dbContext.Id;
-            _date = _dbContext.Dataatualizacao;
-        }*
-        /*public override void OnActionExecuting(ActionExecutingContext filterContext)
-        {
-            Debug.WriteLine("Data e hora: {0}\nUsuário: {1}\nOperação realizada: {3}", DateTime.Now.ToLongTimeString(), filterContext.HttpContext.User.Identity.Name,
-            filterContext.ActionDescriptor.ActionName);
-            //base.OnActionExecuting(filterContext); ;
-        }*/
+        public int _Id { get; set; }
         
         public override void OnActionExecuted(ActionExecutedContext filterContext)
         {
-            string _date_time;
             base.OnActionExecuted(filterContext);
-            _name = filterContext.Controller.ValueProvider.GetValue("director").AttemptedValue;
-            _operacao = filterContext.ActionDescriptor.ActionName;
-            _date_time = filterContext.Controller.ValueProvider.GetValue("releaseDate").AttemptedValue;
-            _date = Convert.ToDateTime(_date_time);
-            MovieDBContext log_data = new MovieDBContext();
-            Log log_data_log = new Log();
-            log_data_log.Name = _name;
-            log_data_log.Dataatualizacao = _date;
-            log_data_log.Operacao = _operacao;
-            log_data.Logs.Add(log_data_log);
-            //_name = filterContext.ActionDescriptor.ActionName;
-            Debug.WriteLine("Data e hora: {0}\nUsuário: {1}\nOperação realizada: {2}", _date, _name, _operacao);
-            //var controllerUsingThisAttribute = ((MovieController)filterContext.Controller);
-            /*Debug.WriteLine("Data e hora: {0}\nUsuário: {1}\nOperação realizada: {3}", DateTime.Now.ToLongTimeString(), filterContext.HttpContext.User.Identity.Name,
-            filterContext.ActionDescriptor.ActionName);*/
-            //base.OnActionExecuted(filterContext);
+            MovieDBContext log_data_DBContext = new MovieDBContext();
+            Log log_data = new Log();
+            log_data.Dataatualizacao = DateTime.Now;
+            log_data.Name = filterContext.HttpContext.User.Identity.Name;
+            log_data.Operacao = filterContext.ActionDescriptor.ActionName;
+            log_data_DBContext.Logs.Add(log_data);
+            log_data_DBContext.SaveChanges();
         }
     }
 }

@@ -23,12 +23,6 @@ namespace MvcMovie.Controllers
                          select movie.Title;
             return Json(movies, JsonRequestBehavior.AllowGet);
         }
-        public ActionResult printlog()
-        {
-            var log_view = (from log in movieDb.Logs
-                            select log).ToList();
-            return View(log_view);
-        }
 
         // GET: Movie
         public ViewResult Index(string searchString, int? SelectedGenre, string sortOrder)
@@ -70,7 +64,6 @@ namespace MvcMovie.Controllers
             }
 
         }*/
-
         // GET: Movie/Details/5
         public ActionResult Details(int? id)
       {
@@ -99,6 +92,7 @@ namespace MvcMovie.Controllers
       [HttpPost]
       [ValidateAntiForgeryToken]
       [Authorize]
+      [DateActionFilter]
         public ActionResult Create([Bind(Include = "ID,Title,Director,ReleaseDate,Gross,Rating,GenreID")] Movie movie)
       {
          if (ModelState.IsValid)
@@ -178,31 +172,32 @@ namespace MvcMovie.Controllers
         }*/
 
         // GET: Movie/Delete/5
-        [Authorize(Users = "admin@mvc.br")]
+       // [Authorize(Users = "admin@mvc.br")]
         public ActionResult Delete(int? id)
-      {
-         if (id == null)
-         {
-            return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-         }
-         Movie movie = movieDb.Movies.Find(id);
-         if (movie == null)
-         {
-            return HttpNotFound();
-         }
-         return View(movie);
-      }
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Movie movie = movieDb.Movies.Find(id);
+            if (movie == null)
+            {
+                return HttpNotFound();
+            }
+            return View(movie);
+        }
 
       // POST: Movie/Delete/5
       [HttpPost, ActionName("Delete")]
       [ValidateAntiForgeryToken]
-      public ActionResult DeleteConfirmed(int id)
-      {
-         Movie movie = movieDb.Movies.Find(id);
-         movieDb.Movies.Remove(movie);
-         movieDb.SaveChanges();
-         return RedirectToAction("Index");
-      }
+        [DateActionFilter]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            Movie movie = movieDb.Movies.Find(id);
+            movieDb.Movies.Remove(movie);
+            movieDb.SaveChanges();
+            return RedirectToAction("Index");
+        }
 
       protected override void Dispose(bool disposing)
       {

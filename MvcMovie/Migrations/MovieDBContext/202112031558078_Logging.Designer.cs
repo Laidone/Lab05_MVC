@@ -7,13 +7,13 @@ namespace MvcMovie.Migrations.MovieDBContext
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class Logging2 : IMigrationMetadata
+    public sealed partial class Logging : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Logging2));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Logging));
         
         string IMigrationMetadata.Id
         {
-            get { return "202112031409242_Logging2"; }
+            get { return "202112031558078_Logging"; }
         }
         
         string IMigrationMetadata.Source
